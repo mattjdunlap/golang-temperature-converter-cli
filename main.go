@@ -14,12 +14,16 @@ var shouldConvertAgain string
 
 var err error
 
-var errInvalidArguments = errors.New("Invalid arguments")
-var errReadingInput = errors.New("Error reading input")
+var errInvalidArguments = errors.New("invalid arguments")
+var errReadingInput = errors.New("error reading input")
 
 func main() {
+	fmt.Println("Args Length: ", len(os.Args))
 	if len(os.Args) != 2 {
 		printError(errInvalidArguments)
+	} else {
+		fmt.Println("Arg1: ", os.Args[0])
+		fmt.Println("Arg2: ", os.Args[1])
 	}
 
 	originUnit = strings.ToUpper(os.Args[1])

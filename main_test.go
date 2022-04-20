@@ -15,7 +15,7 @@ import (
 	"testing"
 )
 
-var binaryName = "tempconverterTestBinary"
+var binaryName = "tempconverterTestBinary.exe"
 
 func TestMain(m *testing.M) {
 	build := exec.Command("go", "build", "-o", binaryName)
