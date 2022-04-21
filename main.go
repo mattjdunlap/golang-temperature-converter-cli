@@ -18,21 +18,34 @@ var errInvalidArguments = errors.New("invalid arguments")
 var errReadingInput = errors.New("error reading input")
 
 func main() {
-	fmt.Println("Args Length: ", len(os.Args))
 	if len(os.Args) != 2 {
 		printError(errInvalidArguments)
-	} else {
-		fmt.Println("Arg1: ", os.Args[0])
-		fmt.Println("Arg2: ", os.Args[1])
 	}
 
 	originUnit = strings.ToUpper(os.Args[1])
 
 	for {
 		fmt.Print("What is the current temperature in " + originUnit + " ? ")
+		_, err = fmt.Scanln(&originValue)
+		if err != nil {
+			printError(errReadingInput)
+		}
+
+		fmt.Println("originValue: ", originValue)
+		fmt.Println("originUnit: ", originUnit)
+		if originUnit == "C" {
+			convertToFahrenheit(originValue)
+		} else {
+			convertToCelsius(originValue)
+		}
 
 		fmt.Print("Would you like to convert another temperature ? (y/n) ")
+		_, err = fmt.Scanln(&shouldConvertAgain)
+		if err != nil {
+			printError(errReadingInput)
+		}
 
+		shouldConvertAgain = strings.ToUpper(shouldConvertAgain)
 		if shouldConvertAgain != "Y" {
 			fmt.Println("Good bye!")
 			break
